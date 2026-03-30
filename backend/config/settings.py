@@ -136,9 +136,20 @@ REST_FRAMEWORK = {
     ),
 }
 
-# React dev server (Vite)
+# React dev server (Vite — port can change if busy)
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
     'http://localhost:5174',
+    'http://localhost:5175',
+    'http://localhost:5176',
+    'http://127.0.0.1:5173',
+    'http://127.0.0.1:5174',
+    'http://127.0.0.1:5175',
+    'http://127.0.0.1:5176',
 ]
+if DEBUG:
+    CORS_ALLOWED_ORIGIN_REGEXES = [
+        r'^http://127\.0\.0\.1:\d+$',
+        r'^http://localhost:\d+$',
+    ]
 

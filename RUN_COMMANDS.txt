@@ -1,0 +1,82 @@
+================================================================================
+  SAHELIQ — Commands to run backend (Django) and frontend (React / Vite)
+================================================================================
+
+Prerequisites (global Python + npm — no virtualenv):
+  - Python 3.x on PATH  →  python --version
+  - Node.js + npm       →  node --version && npm --version
+
+Project root folder:
+  fullcode\
+
+--------------------------------------------------------------------------------
+1) BACKEND (Django + SQLite)
+--------------------------------------------------------------------------------
+
+Open a terminal (PowerShell or CMD), then:
+
+  cd "d:\AMINE2\COURS FAC\travaux\Ines_Immobilier\fullcode\backend"
+
+First-time setup (migrations — only if you have not run them yet):
+
+  python manage.py migrate
+
+Run the API server (default port 8000):
+
+  python manage.py runserver 8000
+
+Backend URL:
+  http://127.0.0.1:8000/
+  API base: http://127.0.0.1:8000/api/
+
+Django admin (optional):
+  http://127.0.0.1:8000/admin/
+
+--------------------------------------------------------------------------------
+2) FRONTEND (React + Vite + npm)
+--------------------------------------------------------------------------------
+
+Open a second terminal, then:
+
+  cd "d:\AMINE2\COURS FAC\travaux\Ines_Immobilier\fullcode\frontend"
+
+First-time setup (install dependencies — only once):
+
+  npm install
+
+Run the dev server:
+
+  npm run dev
+
+Or bind to a fixed port (e.g. 5173):
+
+  npm run dev -- --host --port 5173
+
+Frontend URL (Vite prints the exact URL; often):
+  http://localhost:5173/
+  If that port is busy, Vite will use 5174, 5175, etc.
+
+--------------------------------------------------------------------------------
+3) Typical workflow (two terminals)
+--------------------------------------------------------------------------------
+
+Terminal A — backend:
+  cd "d:\AMINE2\COURS FAC\travaux\Ines_Immobilier\fullcode\backend"
+  python manage.py runserver 8000
+
+Terminal B — frontend:
+  cd "d:\AMINE2\COURS FAC\travaux\Ines_Immobilier\fullcode\frontend"
+  npm run dev
+
+Then open the frontend URL in your browser and use the app.
+
+--------------------------------------------------------------------------------
+4) Optional: production build of the frontend
+--------------------------------------------------------------------------------
+
+  cd "d:\AMINE2\COURS FAC\travaux\Ines_Immobilier\fullcode\frontend"
+  npm run build
+
+Output folder: frontend\dist\
+
+================================================================================
