@@ -17,7 +17,6 @@ function App() {
 
   async function refreshMe() {
     if (!getToken()) {
-      setMe(null)
       return
     }
     try {
@@ -30,7 +29,11 @@ function App() {
   }
 
   useEffect(() => {
-    refreshMe()
+    if (!token) return
+    const t = setTimeout(() => {
+      refreshMe()
+    }, 0)
+    return () => clearTimeout(t)
   }, [token])
 
   return (

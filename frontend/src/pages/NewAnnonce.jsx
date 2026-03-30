@@ -59,7 +59,7 @@ export default function NewAnnonce({ me }) {
       }
       const { data } = await api.post('/annonces/', payload)
       nav(`/annonces/${data.id || ''}`)
-    } catch (err) {
+    } catch {
       setError('Publication impossible (vérifiez les champs).')
     } finally {
       setLoading(false)

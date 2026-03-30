@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { api } from '../lib/api'
 
@@ -8,7 +8,7 @@ export default function Dashboard({ me }) {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
-  async function load() {
+  const load = useCallback(async () => {
     if (!me) {
       nav('/login')
       return
@@ -18,16 +18,16 @@ export default function Dashboard({ me }) {
     try {
       const { data } = await api.get('/annonces/mine/')
       setItems(data)
-    } catch (e) {
+    } catch {
       setError('Erreur chargement mes annonces')
     } finally {
       setLoading(false)
     }
-  }
+  }, [me, nav])
 
   useEffect(() => {
     load()
-  }, [me])
+  }, [load])
 
   async function remove(id) {
     if (!confirm('Supprimer cette annonce ?')) return

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { api } from '../lib/api'
 
@@ -9,7 +9,7 @@ export default function Messages({ me }) {
   const [error, setError] = useState('')
   const [form, setForm] = useState({ destinataire_id: '', annonce_id: '', contenu: '' })
 
-  async function load() {
+  const load = useCallback(async () => {
     if (!me) {
       nav('/login')
       return
@@ -24,11 +24,11 @@ export default function Messages({ me }) {
     } finally {
       setLoading(false)
     }
-  }
+  }, [me, nav])
 
   useEffect(() => {
     load()
-  }, [me])
+  }, [load])
 
   async function send(e) {
     e.preventDefault()

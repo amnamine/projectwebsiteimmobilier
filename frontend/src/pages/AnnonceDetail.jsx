@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { api } from '../lib/api'
 
@@ -10,7 +10,7 @@ export default function AnnonceDetail({ me }) {
   const [loading, setLoading] = useState(true)
   const [favoriteLoading, setFavoriteLoading] = useState(false)
 
-  async function load() {
+  const load = useCallback(async () => {
     setLoading(true)
     setError('')
     try {
@@ -21,11 +21,11 @@ export default function AnnonceDetail({ me }) {
     } finally {
       setLoading(false)
     }
-  }
+  }, [id])
 
   useEffect(() => {
     load()
-  }, [id])
+  }, [load])
 
   async function addToFavorites() {
     if (!me) {

@@ -21,7 +21,7 @@ export default function Register() {
     try {
       await api.post('/auth/register/', form)
       nav('/login')
-    } catch (err) {
+    } catch {
       setError('Inscription impossible (username/email déjà utilisé ?)')
     } finally {
       setLoading(false)

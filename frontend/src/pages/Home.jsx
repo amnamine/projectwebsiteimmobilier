@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../lib/api'
 
@@ -34,7 +34,7 @@ export default function Home({ me }) {
     return s ? `?${s}` : ''
   }, [filters])
 
-  async function load() {
+  const load = useCallback(async () => {
     setLoading(true)
     setError('')
     try {
@@ -45,11 +45,11 @@ export default function Home({ me }) {
     } finally {
       setLoading(false)
     }
-  }
+  }, [qs])
 
   useEffect(() => {
     load()
-  }, [qs])
+  }, [load])
 
   return (
     <div className="stack">
